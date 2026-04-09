@@ -1,0 +1,23 @@
+{
+  "overview": "An AI-powered recruitment platform that generates job descriptions, screening criteria, interview questions, evaluation rubrics, and analyzes candidate resumes with automated scoring and compliance checks.",
+  "features": [
+    "AI job description generation",
+    "Screening criteria with must-have and red flags",
+    "Interview question bank (technical, behavioral, situational)",
+    "Evaluation rubrics with 1-5 scoring",
+    "Resume analysis with skills extraction",
+    "Candidate scoring with progress bars (skills, experience, communication, culture fit)",
+    "Final hiring verdict with justification",
+    "Bias-free language and Equal Opportunity compliance"
+  ],
+  "category": "productivity",
+  "tags": [
+    "recruitment",
+    "ai",
+    "hr-tech",
+    "hiring",
+    "resume-analysis",
+    "job-description"
+  ],
+  "last_updated": "2026-04-09T06:55:08.480Z"
+}

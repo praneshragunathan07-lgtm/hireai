@@ -1,0 +1,97 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type ScreeningCriteria = 
+ record {
+   goodToHave: vec text;
+   mustHave: vec text;
+   redFlags: vec text;
+ };
+type RubricCategory = 
+ record {
+   criteria: text;
+   scoringGuide: vec text;
+ };
+type RecruitmentResult = 
+ record {
+   candidateAnalysis: opt CandidateAnalysis;
+   candidateScore: opt CandidateScore;
+   evaluationRubric: EvaluationRubric;
+   interviewQuestions: InterviewQuestions;
+   jobDescription: JobDescription;
+   screeningCriteria: ScreeningCriteria;
+ };
+type JobDescription = 
+ record {
+   equalOpportunityStatement: text;
+   preferredQualifications: vec text;
+   requiredSkills: vec text;
+   responsibilities: vec text;
+   summary: text;
+ };
+type InterviewQuestions = 
+ record {
+   behavioral: vec text;
+   situational: vec text;
+   technical: vec text;
+ };
+type GenerateInput = 
+ record {
+   companyCulture: text;
+   experienceLevel: text;
+   industry: text;
+   jobRole: text;
+   resumeContent: opt text;
+ };
+type EvaluationRubric = 
+ record {
+   communication: RubricCategory;
+   cultureFit: RubricCategory;
+   problemSolving: RubricCategory;
+   technical: RubricCategory;
+ };
+type CandidateScore = 
+ record {
+   communicationScore: nat;
+   cultureFitScore: nat;
+   experienceScore: nat;
+   justification: text;
+   skillsScore: nat;
+   totalScore: nat;
+   verdict: text;
+ };
+type CandidateAnalysis = 
+ record {
+   experienceSummary: text;
+   identifiedSkills: vec text;
+   skillGaps: vec text;
+   strengths: vec text;
+ };
+service : {
+  generateRecruitmentArtifacts: (input: GenerateInput) ->
+   (variant {
+      err: text;
+      ok: RecruitmentResult;
+    });
+  setOpenAIApiKey: (key: text) -> ();
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}
